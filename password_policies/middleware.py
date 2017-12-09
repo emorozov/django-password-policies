@@ -4,13 +4,14 @@ from django.core.urlresolvers import resolve, reverse, NoReverseMatch, \
     Resolver404
 from django.http import HttpResponseRedirect
 from django.utils import timezone
+from django.utils.deprecation import MiddlewareMixin
 
 from password_policies.conf import settings
 from password_policies.models import PasswordChangeRequired, PasswordHistory
 from password_policies.utils import PasswordCheck
 
 
-class PasswordChangeMiddleware(object):
+class PasswordChangeMiddleware(MiddlewareMixin):
     """
 A middleware to force a password change.
 
